@@ -5,3 +5,6 @@ explorations
 TODOs.md
 dist/*.gz
 dist/*.map
+package-lock.json
+dist/
+npm-debug.log
