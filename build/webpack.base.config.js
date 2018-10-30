@@ -15,9 +15,37 @@ module.exports = {
     publicPath: '/dist/',
     filename: '[name].[chunkhash].js'
   },
+  externals: {
+    'weui': 'weui',
+    'zepto': 'Zepto',
+    'BMap': 'BMap',
+    'wx': 'jWeixin'
+  },
+  // 提示文件体积大于150kb
+  performance: {
+    hints: process.env.NODE_ENV === 'production' ? 'warning' : false,
+    maxAssetSize: 150000
+  },
+  // 配置模块resolve的规则
   resolve: {
+    // 自动resolve的扩展名
+    extensions: ['.js', '.vue', '.json'],
+    // resolve模块的时候要搜索的文件夹
+    modules: [
+      path.resolve(__dirname, '../src'),
+      path.resolve(__dirname, '../node_modules')
+    ],
+    /*
+     * 创建路径别名，有了别名之后引用模块更方便，
+     * 例如import Vue from 'vue/dist/vue.esm.js'可以写成 import Vue from 'vue'
+     */
     alias: {
-      'public': path.resolve(__dirname, '../public')
+      'public': path.resolve(__dirname, '../public'),
+      '@': path.resolve(__dirname, '../src'),
+      'vue$': 'vue/dist/vue.esm.js',
+      'static':  path.resolve(__dirname, '../static'),
+      'assets':  path.resolve(__dirname, '../src/assets'),
+      'components':  path.resolve(__dirname, '../src/components')
     }
   },
   module: {
@@ -46,13 +74,24 @@ module.exports = {
         }
       },
       {
+        // 对src和test文件夹下的.js文件使用babel-loader
         test: /\.js$/,
-        loader: 'buble-loader',
-        exclude: /node_modules/,
-        options: {
-          objectAssign: 'Object.assign'
-        }
+        loader: 'babel-loader',
+        exclude: function(path) {
+          // 路径中含有 node_modules 的就不去解析。
+          var isNpmModule = !!path.match(/node_modules/)
+          return isNpmModule
+        },
+        include: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../test')]
       },
+      // {
+      //   test: /\.js$/,
+      //   loader: 'buble-loader',
+      //   exclude: /node_modules/,
+      //   options: {
+      //     objectAssign: 'Object.assign'
+      //   }
+      // },
       {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'url-loader',

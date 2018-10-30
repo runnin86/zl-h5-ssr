@@ -1,0 +1,330 @@
+.ucenter p {
+  margin: 0;
+}
+
+.ucenter-top {
+  height: 80px;
+  width: 100%;
+  background: url(../images/center-top-bg.png) no-repeat center top;
+  background-size: cover;
+  padding: 20px 15px 0;
+}
+
+.ucenter-top img {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+.ucenter-top p {
+  color: #444;
+  line-height: 1.5
+}
+
+.top-title {
+  padding-left: 10px;
+  width: 80%;
+  overflow: hidden;
+  height: 56px;
+}
+
+.month-income {
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 12px;
+  padding-left: 15px;
+  background: #fff
+}
+
+.month-income a {
+  display: block;
+  width: 100%;
+  padding: 16px 0 12px;
+  color: #888;
+  background-size: 16px;
+  position: relative;
+}
+
+.month-income span {
+  font-size: 20px;
+  color: #df2548;
+}
+
+.iconroom .col-xs-4 i {
+  font-size: 28px;
+}
+
+.iconroom .icon-yzg-shouru, .iconroom .icon-yzg-sellerOrder, .iconroom .icon-yzg-goods_magage {
+  color: #d31947;
+}
+
+.iconroom .icon-yzg-share {
+  color: #e4663a;
+}
+
+.iconroom .icon-yzg-fenxiao, .iconroom .icon-yzg-user {
+  color: #84c10e;
+}
+
+.month-order {
+  color: #888;
+  padding: 10px 0 8px;
+  border-bottom: 1px solid #ddd;
+  font-size: 12px;
+  text-align: center;
+  background: #fff;
+}
+
+.month-order p {
+  font-size: 12px
+}
+
+.month-order span {
+  color: #44484e;
+  font-size: 16px;
+  padding-top: 5px;
+  display: block;
+  font-size: 14px;
+}
+
+.ucenter .iconroom {
+  margin: 2px -15px 2px;
+  background: #fff;
+}
+
+.month-income .icon-yzg-arrow {
+  position: absolute;
+  right: 0;
+  top: 25px;
+  font-size: 22px;
+}
+
+.iconroom a {
+  text-align: center;
+  display: block;
+  color: #888;
+}
+
+.iconroom img {
+  height: 32px;
+  display: block;
+  margin: 0 auto;
+}
+
+.iconroom span {
+  display: block;
+  font-size: 12px;
+  padding-top: 2px;
+}
+
+.iconroom .col-xs-4 {
+  height: 98px;
+  padding: 20px 0;
+  border-bottom: 1px solid #ebebeb;
+}
+
+.help-center h3 {
+  padding: 0;
+}
+
+.help-center h3 span {
+  right: 0;
+  font-size: 12px;
+}
+
+.help-center h3 a {
+  color: #44484e;
+  font-size: 14px;
+}
+
+.help-center ul {
+  padding: 0;
+}
+
+.help-center ul li {
+  line-height: 50px;
+  position: relative;
+  background-size: 25px;
+  height: 51px;
+  overflow: hidden;
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
+.help-center ul li i {
+  position: absolute;
+  left: 15px;
+  font-size: 20px;
+  color: #e4663a;
+}
+
+.help-center ul li:hover, .help-center ul li:active {
+  background-color: #f4f4f4;
+}
+
+.help-center ul li a {
+  color: #44484e;
+  display: block;
+  border-bottom: 1px solid #f4f4f4;
+  margin-left: 48px;
+  margin-right: 15px;
+}
+
+.help-center ul li:last-child a {
+  border: none;
+}
+
+.shop-rush h3 span, .help-center h3 span {
+  position: absolute;
+  right: 14px;
+  top: 0;
+  color: #aaa;
+}
+
+.shop-rush h3 a, .help-center h3 a {
+  color: #d6244f;
+}
+
+.ucenter .pay-money {
+  padding: 0;
+  margin: 10px 0 23px;
+}
+
+.ucenter .quit {
+  background: none;
+}
+
+.quit a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #e4663a;
+  border: 1px solid #e4663a;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 42px;
+  line-height: 40px;
+  padding: 0;
+}
+
+.quit a:hover {
+  color: #c84a1e
+}
+
+.ucenter_buyer {
+  border-top: 0px solid #f8f8f8;
+}
+
+.ucenter .my-shop {
+  margin: 6px 0;
+  font-size: 15px;
+  background: #fff;
+  padding: 0 15px;
+}
+
+.my-shop li {
+  position: relative;
+}
+
+.my-shop ul li a {
+  color: #555a5f;
+}
+
+.shop-quarity {
+  position: absolute;
+  right: 15px;
+}
+
+.my-shop .shop-order {
+  background: url(../images/noshop-order.png) no-repeat 20px center;
+  background-size: 25px;
+}
+
+.my-shop .receive-address {
+  background: url(../images/noshop-address.png) no-repeat 20px center;
+  background-size: 25px;
+}
+
+.my-shop .my-collect {
+  background: url(../images/noshop-collect.png) no-repeat 20px center;
+  background-size: 25px;
+}
+
+.my-shop .shop-help {
+  background: url(../images/help_1.png) no-repeat 20px center;
+  background-size: 25px;
+}
+
+.my-shop .shop-pintuan {
+  background: url(../images/pin.png) no-repeat 20px center;
+  background-size: 25px;
+}
+
+.ucenter .start-up {
+  padding: 0;
+  margin-bottom: 26px;
+}
+
+.ucenter .start-up img {
+  width: 100%;
+}
+
+.list_status .iconfont-yzg {
+  font-size: 20px
+}
+
+.list_status li span {
+  font-size: 12px
+}
+
+.set-shop img {
+  width: 100%;
+}
+
+.my-order_lists {
+  background: #fff;
+}
+
+.my-order_lists .all_list {
+  padding: 12px 15px;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.my-order_lists .all_list .my_order {
+  flex: 1;
+}
+
+.my-order_lists .all_list .check-all_list {
+  font-size: 12px;
+}
+
+.my-order_lists .all_list .check-all_list span {
+  font-size: 14px;
+}
+
+.my-order_lists .list_status {
+  text-align: center;
+  padding: 16px 0;
+  border-top: 1px solid #ddd;
+  font-size: 12px;
+  display: flex;
+}
+
+.my-order_lists .list_status ul {
+  display: flex;
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.my-order_lists .list_status ul li {
+  flex: 1;
+}
+
+.my-order_lists .list_status ul li img {
+  width: 20px;
+}
+
+.my-order_lists .list_status ul li span {
+  display: block;
+}

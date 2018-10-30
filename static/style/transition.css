@@ -1,0 +1,108 @@
+/*
+ 慢速平滑切入
+ */
+.slide-fade-enter-active {
+  transition: all .1s ease;
+}
+.slide-fade-leave-active {
+  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter,
+.slide-fade-leave-active {
+  padding-left: 10px;
+  opacity: 0;
+}
+
+/*
+ 平滑切入
+ */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .1s
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
+
+/*
+ 从右至左切入
+ */
+.bounce-enter-active {
+  animation: bounce-in .5s;
+}
+.bounce-leave-active {
+  animation: bounce-out .0s;
+}
+
+/*
+ 从左至右切出
+ */
+.bounceOut-enter-active {
+  animation: bounce-out .5s;
+}
+.bounceOut-leave-active {
+  animation: bounce-in .0s;
+}
+
+@keyframes bounce-in {
+  0% {
+		opacity: 0;
+		-webkit-transform: translateX(100%);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateX(0);
+	}
+}
+@keyframes bounce-out {
+  0% {
+		opacity: 0;
+		-webkit-transform: translateX(0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateX(100%);
+	}
+}
+
+/*
+ 从下至上切入
+ */
+.pushtop-enter-active {
+  animation: pushtop-in .6s;
+}
+.pushtop-leave-active {
+  animation: pushtop-out .0s;
+}
+
+/*
+ 从下至上切出
+ */
+.pushtopOut-enter-active {
+  animation: pushtop-out .6s;
+}
+.pushtopOut-leave-active {
+  animation: pushtop-in .0s;
+}
+
+@keyframes pushtop-in {
+  0% {
+		opacity: 0;
+		-webkit-transform: translateY(100%);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(0);
+	}
+}
+@keyframes pushtop-out {
+  0% {
+		opacity: 0;
+		-webkit-transform: translateY(0);
+	}
+	100% {
+		opacity: 1;
+		-webkit-transform: translateY(100%);
+	}
+}

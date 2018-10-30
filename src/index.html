@@ -6,10 +6,45 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta name="theme-color" content="#f60">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/static/style/weuix.min.css"/>
+    <link rel="stylesheet" href="https://res.wx.qq.com/open/libs/weui/1.1.3/weui.min.css">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_i1sczmbt45eidx6r.css"/>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <!-- <div id="app"></div> --> <!-- 使用ssr此处注释 -->
     <!--vue-ssr-outlet-->
+    <script type='text/javascript' src='/static/js/zepto.min.js' charset='utf-8'></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/libs/weuijs/1.1.4/weui.min.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=OYFnedyot224GCLZUcKoSdToeF9fHCvT"></script>
+    <script type='text/javascript' src='//res.wx.qq.com/open/js/jweixin-1.3.0.js' charset='utf-8'></script>
+    <script type='text/javascript' src='static/dll/vueFamily.dll.js' charset='utf-8'></script>
+    <script type='text/javascript' src='static/dll/extra.dll.js' charset='utf-8'></script>
+    <script type='text/javascript' src='static/dll/business.dll.js' charset='utf-8'></script>
+    <!-- <script src="http://192.168.1.217:1234/target/target-script-min.js#anonymous"></script> -->
+    <script type="text/javascript">
+      /* 因为我们后面用的是rem布局，所以这里做下处理，根据不用设备分辨率更改跟字体大小。
+      rem相关布局[请参考](http://www.jianshu.com/p/65f80d4b44bb)*/
+      (function(doc, win) {
+          var docEl = doc.documentElement,
+              resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+              recalc = function() {
+                var clientWidth = docEl.clientWidth;
+                if (!clientWidth) return;
+                docEl.style.fontSize = 20 * (clientWidth / 320) + 'px';
+              };
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+      })(document, window);
+    </script>
+    <!-- built files will be auto injected -->
   </body>
 </html>

@@ -1,0 +1,44 @@
+/*header*/
+.main1{
+		width:100%;
+		max-width:640px;
+		min-width:320px;
+		margin:0 auto;
+	}
+	.inp-css{
+		height: 62px;
+		border:none;
+		font-size: 16px;	
+		padding: 0 12px;
+	}
+	.nav-center{
+		height: 44px;
+		line-height:44px;
+		background: #d6244f;
+	}
+	.css1{
+		padding-left:15px;
+	}
+	.css2{
+		text-align: center;
+		font-size: 18px;
+		color: #fff;
+	}
+	.css3{
+		font-size: 16px;
+		text-align: right;
+		padding-right: 15px;
+	}
+	.shop-top-img{padding-left:15px;}
+.shop-top-img a{border:2px solid #fff; width:36px; height:36px; margin-top:3px; border-radius:50%; display:block;}
+.shop-top-img img{ width:32px; height:32px; vertical-align:top;}
+/*footer*/
+.shop-fix-footer{ background:#f8f8f8; border-top:1px solid #ddd; max-width:640px; min-width:320px; width:100%; margin:0 auto; height:58px;}
+.shop-fix-footer ul{ padding:0 4px;}
+.shop-fix-footer ul li{ text-align:center;}
+.shop-fix-footer a{ color:#aaa; font-size:10px; display:block;}
+.shop-fix-footer .ihover a,.shop-fix-footer .ihover span{ color:#d31947;}
+.shop-fix-footer ul li  span{font-size:24px; display:block; color:#777; margin-bottom:-3px;}
+.shop-fix-footer .col-xs-2,.shop-fix-footer .col-xs-4{ width:20%;}
+.shop-qrcode{width:44px; vertical-align:middle; padding-top:5px;}
+.shop-fix-footer .row{ background-color:#f8f8f8; padding:0; padding-top:3px; margin:0;}

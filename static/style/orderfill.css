@@ -1,0 +1,208 @@
+.mainContent {
+  background: #eee
+}
+
+.mainContent table {
+  width: 100%;
+}
+
+.receiverInfor,
+.goodsDetail,
+.orderAccount,
+.fillNotice {
+  background: #fff;
+  padding: 0.8547rem 0 0.8547rem 0.8547rem;
+  margin-top: 10px;
+}
+.receiverInfor{
+  padding:0 0 0 0.85333333rem;
+  margin-top:0.42666667rem;
+}
+.receiverInfor {
+  position: relative;
+  text-align: left;
+}
+.subDetails {
+  text-align: left; position: relative;
+}
+
+.title_p {
+  border-bottom: 1px solid #eee;
+  color: #3a3a3a;
+  padding-bottom: 10px
+}
+
+.inforShow td {
+  line-height: 28px;
+}
+
+.lastTd {
+  width: 30px;
+}
+
+.imgDetails {
+  width: 90px;
+}
+
+.subDetails p {
+  font-size: 0.598rem
+  line-height: 1rem; height: 2rem
+}
+
+.imgDetails img {
+  width: 80px;
+  border: 1px solid #eee;
+}
+.choiceProv{ width: 80%; height:34px; line-height: 34px;  border:1px solid #ccc; border-radius:4px; -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075); color:#555; padding-left:12px; overflow: hidden;}
+input{ font-family: '微软雅黑' }
+.goodsQuantity {
+  color: #aaa; position: absolute; right: 0.8547rem; bottom: 0.3rem
+}
+
+.orderAccount table td {
+  text-align: right;
+  line-height: 28px;
+  color: #777;
+}
+.orderAccount table td span{
+  display:inline-block;
+  width:50px; text-align: left;
+}
+.fillNotice p {
+  color: #e4663a;
+}
+
+.placeOrder {
+  padding: 20px; text-align: center;
+}
+
+.placeOrder input {
+  height: 38px; width:100%;
+}
+
+.goodsDetail table td {
+  padding: 4px 0 7px;
+  border-bottom: 1px solid #eee;
+}
+.goodsDetail table tr:last-child td{
+  border: none
+}
+
+.radio {
+  position: relative;
+}
+
+.radio a {
+  position: absolute;
+  padding-left: 30px;
+  top: 0;
+}
+
+
+/*地址修改信息*/
+
+.addressDetails h6 {
+  font-weight: bold;
+}
+.addFillIn tr td {
+  padding: 0.21333333rem 0;
+}
+.addFillIn tr td:first-child {
+  width: 2.77333333rem;
+}
+.addFillIn input {
+  width: 100%;
+}
+/*过渡效果*/
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .0s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter,
+.slide-fade-leave-active {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+/*提交订单成功页面*/
+.orderInfor{ padding:10px; background: #fff; margin-top:10px; }
+.orderInfor table td{ padding:5px 0; }
+.payment ul{ margin:0; }
+.payment ul li{ height:34px; line-height: 40px; }
+.selectSign{ color:#2ecc71; position:absolute; right:15px; top:0}
+.totalMoney span{ color:#ed3366;}
+/*错误提示*/
+.errWarning{ margin:60px auto 20px; background: #fefcf0; padding: 30px 0 40px 0; border: 1px dotted #f5beb3; border-radius: 10px; text-align: center; color:#ed3366;}
+.errWarning p{ font-size: 20px; margin-top:10px; }
+.errWarning a{ padding:5px 10px; display: inline-block; border-radius:4px; margin-top:15px; color:#ed3366; }
+.errWarning .icon-yzg-information{ font-size: 40px; }
+
+.couponUse{ position:relative; padding: 0.5rem !important}
+.couponUse span{position: absolute; right: 0.5rem; bottom: 0.5rem}
+
+/* 优惠券 */
+.bonusList{padding:0.641rem 0.641rem 1.5rem;position: fixed;width: 100%;top: 30px;height: 100%;overflow: scroll; background: #e5e8f1;}
+.bonusList ul li {background: url('/static/images/usingCoupon.png'); background-size: 100%; color:#c8975c; margin:5px 0;}
+.bonusList .unused{background: url('/static/images/unusedCoupon.png'); color:#999 }
+.bonusList .unused .col-xs-4:before{ background: #999 }
+.bonusList .col-xs-4{ font-size: 1.5385rem; padding-left: 1.196rem; padding-top: 0.6rem; position: relative; width: 42%;}
+.bonusList .col-xs-4:before{position: absolute; content: ''; width: 1px; height: 86%; background: #c8975c; top: 0.5rem; right: 0}
+.moneySymbol{font-size:0.5983rem; font-style: normal; }
+.bonusList .col-xs-8{ text-align: right; padding: 0.78rem 1.2rem 0.78rem 0.78rem; width:58%;}
+.bonusList .col-xs-8 p{ font-size: 0.598rem;}
+.bonusList .col-xs-8 span{font-size: 0.513rem; padding-top: 0.25rem; display: block; opacity: 0.7}
+/* 动画 */
+.bonusListAniLeft {animation: flyLeft 0.3s;
+              -moz-animation: flyLeft 0.3s; /* Firefox */
+           -webkit-animation: flyLeft 0.3s;  /* Safari 和 Chrome */
+                -o-animation: flyLeft 0.3s; /* Opera */}
+.bonusListAniRight {animation: flyRight 0.3s;
+               -moz-animation: flyRight 0.3s; /* Firefox */
+            -webkit-animation: flyRight 0.3s;  /* Safari 和 Chrome */
+                 -o-animation: flyRight 0.3s; left: 200%;}
+.bonusOriginal{ display: none;}
+@keyframes flyLeft {
+  0%{left: 100%;}
+  100%{left:15px;}
+}
+@-moz-keyframes flyLeft /* Firefox */
+{
+  0%{left: 100%;}
+  100%{left:15px;}
+}
+
+@-webkit-keyframes flyLeft /* Safari 和 Chrome */
+{
+  0%{left: 100%;}
+  100%{left:15px;}
+}
+
+@-o-keyframes flyLeft /* Opera */
+{
+  0%{left: 100%;}
+  100%{left:15px;}
+}
+
+@keyframes flyRight {
+  0%{left: 15px;}
+  100%{left:100%;}
+}
+@-moz-keyframes flyRight /* Firefox */
+{
+  0%{left: 15px;}
+  100%{left:100%;}
+}
+
+@-webkit-keyframes flyRight /* Safari 和 Chrome */
+{
+  0%{left: 15px;}
+  100%{left:100%;}
+}
+
+@-o-keyframes flyRight /* Opera */
+{
+  0%{left: 15px;}
+  100%{left:100%;}
+}

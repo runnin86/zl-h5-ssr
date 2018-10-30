@@ -1,10 +1,12 @@
 const fs = require('fs')
 const path = require('path')
+const chalk = require('chalk')
 const express = require('express')
 // const favicon = require('serve-favicon') // icon图标
 const compression = require('compression') // 开启gzip压缩
 const resolve = file => path.resolve(__dirname, file)
 // const proxy = require('http-proxy-middleware');//引入代理中间件
+// 用于在控制台输出带颜色字体的插件
 
 const isProd = process.env.NODE_ENV === 'production'
 const serverInfo = `express/${require('express/package.json').version} ` +
@@ -26,7 +28,6 @@ function createRenderer (bundle, template) {
 
 let renderer
 if (isProd) {
-
   // 生产创建服务端渲染使用 server bundle 和 html
   // server bundle的生成依赖于 vue-ssr-webpack-plugin 插件
   const bundle = require('./dist/vue-ssr-bundle.json')
@@ -34,15 +35,12 @@ if (isProd) {
   // html模板由 html-webpack-plugin 插件注入资源并输出 'dist/index.html'
   const template = fs.readFileSync(resolve('./dist/index.html'), 'utf-8')
   renderer = createRenderer(bundle, template)
-
 } else {
-
   // 开发模式需要设置 dev-server 和 hot-reload
   // 创建一个新renderer更新模板
   require('./build/setup-dev-server')(app, (bundle, template) => {
     renderer = createRenderer(bundle, template)
   })
-
 }
 
 const serve = (path, cache) => express.static(resolve(path), {
@@ -56,6 +54,11 @@ app.use('/public', serve('./public', true)) // 静态资源 （如：http://loca
 app.use('/manifest.json', serve('./manifest.json', true))
 app.use('/service-worker.js', serve('./dist/service-worker.js'))
 
+app.use('/static', serve('./dist/static/', true))
+// app.use('/static', express.static(path.join(__dirname, './dist/static/')))
+app.use('/data', express.static(path.join(__dirname, './src/data')))
+app.use('/img', express.static(path.join(__dirname, './src/assets/img')))
+
 app.get('*', (req, res) => {
   // 未渲染好返回
   if (!renderer) {
@@ -64,8 +67,8 @@ app.get('*', (req, res) => {
 
   const s = Date.now()
 
-  res.setHeader("Content-Type", "text/html")
-  res.setHeader("Server", serverInfo)
+  res.setHeader('Content-Type', 'text/html')
+  res.setHeader('Server', serverInfo)
 
   const errorHandler = err => {
     if (err && err.code === 404) {
@@ -90,7 +93,5 @@ app.get('*', (req, res) => {
 const port = process.env.PORT || 3002
 
 app.listen(port, () => {
-  console.log(`server started at localhost:${port}`)
+  console.log(chalk.yellow(`server started at localhost:${port}`))
 })
-
-

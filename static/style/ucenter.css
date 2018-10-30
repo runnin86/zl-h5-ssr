@@ -1,0 +1,435 @@
+.ucenter p {
+  margin: 0;
+}
+
+.ucenter-top {
+  height: 80px;
+  width: 100%;
+  background: url(../images/center-top-bg.png) no-repeat center top;
+  background-size: cover;
+  padding: 20px 15px 0;
+}
+
+.ucenter-top img {
+  width: 45px;
+  height: 45px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+.ucenter-top p {
+  color: #444;
+  line-height: 1.5
+}
+
+.top-title {
+  padding-left: 10px;
+  width: 80%;
+  overflow: hidden;
+  height: 56px;
+}
+
+.ucenter_seller .float_block {
+  width: 92%;
+  background: #fff;
+  position: absolute;
+  top: -1.8rem;
+  z-index: 12;
+  margin: 0 15px;
+  box-shadow: 0px 0px 0.64rem #999;
+}
+
+.ucenter_seller .float_block .month-income {
+  position: relative;
+}
+
+.month-income a {
+  display: block;
+  background: #fff;
+}
+
+.month-income .income {
+  text-align: center;
+  padding: 0.2987rem 0;
+}
+
+.month-income .total_revenue {
+  font-size: 1.2373rem;
+  font-weight: bold;
+  color: #C7895C;
+}
+
+.month-income .details {
+  text-align: center;
+  color: #333;
+  padding-bottom: 0.64rem;
+}
+
+.month-income .details span, .month-income .details i {
+  font-size: 0.4267rem;
+  font-weight: light;
+}
+
+.month-income .tip {
+  position: absolute;
+  top: 0.4267rem;
+  right: 0.4267rem;
+  width: 1.024rem;
+}
+
+.row.month-income {
+  margin: 0;
+}
+
+.iconroom .col-xs-4 i {
+  font-size: 28px;
+}
+
+.iconroom .icon-yzg-shouru, .iconroom .icon-yzg-sellerOrder, .iconroom .icon-yzg-goods_magage {
+  color: #d31947;
+}
+
+.iconroom .icon-yzg-share {
+  color: #e4663a;
+}
+
+.iconroom .icon-yzg-fenxiao, .iconroom .icon-yzg-user {
+  color: #84c10e;
+}
+
+.month-order {
+  text-align: center;
+  background: #fff;
+}
+
+.row.month-order {
+  margin: 22px auto 12px auto;
+}
+
+.month-order p {
+  font-size: 12px
+}
+
+.month-order span {
+  display: block;
+}
+
+.month-order .number_font {
+  font-size: 0.5973rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.month-order .text_font {
+  font-size: 0.512rem;
+  color: #333;
+  padding: 0.3413rem 0;
+}
+
+.ucenter .iconroom {
+  margin: -32px 0 0;
+  background: #fff;
+}
+
+.iconroom h3 {
+  font-size: 0.5973rem;
+  font-weight: bold;
+  color: #333;
+  padding: 0.832rem 0.64rem 0.2133rem;
+}
+
+.iconroom a {
+  text-align: center;
+  display: block;
+}
+
+.iconroom img {
+  height: 36px;
+  display: block;
+  margin: 0 auto;
+}
+
+.iconroom span {
+  display: block;
+  padding-top: 0.42rem;
+  font-size: 0.512rem;
+  color: #333;
+}
+
+.iconroom .col-xs-4 {
+  padding: 0.5973rem 0 0.768rem;
+}
+
+.iconroom .col-xs-4 img {
+  height: 1.024rem;
+}
+
+.help-center h3 {
+  padding: 0;
+}
+
+.help-center h3 span {
+  right: 0;
+  font-size: 12px;
+}
+
+.help-center h3 a {
+  color: #44484e;
+  font-size: 14px;
+}
+
+.help-center ul {
+  padding: 0;
+}
+
+.help-center ul li {
+  line-height: 1.7493rem;
+  position: relative;
+  background-size: 25px;
+  height: 1.7493rem;
+  overflow: hidden;
+  margin-left: -0.64rem;
+  margin-right: -0.64rem;
+}
+
+.help-center ul li i {
+  position: absolute;
+  left: 15px;
+  font-size: 20px;
+  color: #e4663a;
+}
+
+.help-center ul li:hover, .help-center ul li:active {
+  background-color: #f4f4f4;
+}
+
+.help-center ul li a {
+  color: #44484e;
+  display: block;
+  border-bottom: 1px solid #f4f4f4;
+  margin-left: 0.64rem;
+  padding-right: 0.64rem;
+  padding-left: 1.3653rem;
+}
+
+.help-center ul li:last-child a {
+  border: none;
+}
+
+.shop-rush h3 span, .help-center h3 span {
+  position: absolute;
+  right: 14px;
+  top: 0;
+  color: #aaa;
+}
+
+.shop-rush h3 a, .help-center h3 a {
+  color: #d6244f;
+}
+
+.ucenter .pay-money {
+  padding: 0;
+  margin: 10px 0 23px;
+}
+
+.ucenter .quit {
+  background: none;
+}
+
+.quit a {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: #e4663a;
+  border: 1px solid #e4663a;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 42px;
+  line-height: 40px;
+  padding: 0;
+}
+
+.quit a:hover {
+  color: #c84a1e
+}
+
+.ucenter_buyer {
+  border-top: 0.2133rem solid #f8f8f8;
+}
+
+.ucenter .my-shop {
+  margin: 0.2133rem 0 0;
+  font-size: 0.5973rem;
+  color: #333;
+  background: #fff;
+  padding: 0 0.64rem;
+}
+
+.ucenter_buyer .text-font {
+  font-size: 0.512rem;
+  color: #333;
+}
+
+.my-shop li {
+  position: relative;
+}
+
+.my-shop ul li a {
+  color: #333;
+  font-size: 0.5973rem;
+}
+
+.shop-quarity {
+  position: absolute;
+  right: 15px;
+}
+
+.my-shop .shop-order {
+  background: url(../images/noshop-order.png) no-repeat 20px center;
+  background-size: 25px;
+}
+
+.my-shop .receive-address {
+  background: url(../images/noshop-address.png) no-repeat 20px center;
+  background-size: 25px;
+}
+
+.my-shop .my-collect {
+  background: url(../images/noshop-collect.png) no-repeat 20px center;
+  background-size: 25px;
+}
+
+.my-shop .shop-help {
+  background: url(../images/help_1.png) no-repeat 20px center;
+  background-size: 25px;
+}
+
+.my-shop .shop-pintuan {
+  background: url(../images/pin.png) no-repeat 20px center;
+  background-size: 25px;
+}
+
+.my-shop .text-font {
+  font-size: 0.5973rem;
+  color: #333;
+}
+
+.ucenter .start-up {
+  padding: 0;
+  margin-bottom: 26px;
+}
+
+.ucenter .start-up img {
+  width: 100%;
+}
+
+.list_status .iconfont-yzg {
+  font-size: 20px
+}
+
+.list_status li span {
+  font-size: 12px
+}
+
+.set-shop img {
+  width: 100%;
+}
+
+.my-order_lists {
+  background: #fff;
+}
+
+.my-order_lists .all_list {
+  color: #333;
+  padding: 0.64rem 0.64rem 0.2987rem;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.my-order_lists .all_list .my_order {
+  flex: 1;
+  font-weight: bold;
+}
+
+.my-order_lists .all_list .my_order span {
+  font-size: 0.5973rem;
+}
+
+.my-order_lists .all_list .check-all_list {
+  font-size: 0.4267rem;
+  font-weight: light;
+}
+
+.my-order_lists .all_list .check-all_list span {
+  font-size: 0.5973rem;
+}
+
+.my-order_lists .list_status {
+  text-align: center;
+  padding: 0.512rem 0 0.768rem;
+  font-size: 0.512rem;
+  color: #333;
+  display: flex;
+}
+
+.my-order_lists .list_status ul {
+  display: flex;
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.my-order_lists .list_status ul li {
+  flex: 1;
+}
+
+.my-order_lists .list_status ul li img {
+  width: 1.024rem;
+}
+
+.my-order_lists .list_status ul li span {
+  display: block;
+}
+
+.my-order_lists .list_status .text_font {
+  font-size: 0.512rem;
+  color: #333;
+  margin-top: -0.128rem;
+}
+
+.help-center img {
+  position: absolute;
+  width: 1.024rem;
+  top: 0.325rem;
+  left: 0.50rem;
+}
+
+.ucenter_seller {
+  position: relative;
+  padding-top: 3.6933rem;
+  background: #fff;
+  margin: 0 -15px;
+}
+
+.caption_text {
+  font-size: 0.512rem;
+  color: #333;
+}
+
+.index-title .set {
+  position: absolute;
+  right: 0.64rem;
+  top: 0.128rem;
+  display: block;
+}
+
+.index-title .set img {
+  width: 1.024rem;
+}
+
+.index-title .set span {
+  font-size: 0.4266rem;
+  font-weight: light;
+  color: #fff;
+  display: block;
+  margin-top: -0.2987rem;
+}
