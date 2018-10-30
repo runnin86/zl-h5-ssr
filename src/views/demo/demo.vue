@@ -189,22 +189,46 @@ import thumb from 'static/weui/images/icon_nav_button.png'
 
 export default {
   name: 'demo',
-  init () {
-    // console.log('初始化')
-  },
-  created () {
-    // console.log('创建')
-  },
-  data () {
+  data() {
     return {
       imgIcon,
       thumb
     }
   },
-  mounted () {
+  beforeCreate() {
+    // 在实例初始化之后，数据观测 (data observer) 和 event/watcher 事件配置之前被调
+    console.log('创建之前')
+  },
+  created() {
+    console.log('创建')
+  },
+  beforeMount() {
+    // 在挂载开始之前被调用：相关的 render 函数首次被调用。该钩子在服务器端渲染期间不被调用。
+    console.log('挂载之前')
+  },
+  mounted() {
+    console.log('挂载完成')
+  },
+  beforeUpdate() {
+    console.log('更新之前')
+  },
+  updated() {
+    console.log('更新')
+  },
+  activated() {
+    console.log('keep-alive 组件激活时调用')
+  },
+  deactivated() {
+    console.log('keep-alive 组件停用时调用')
+  },
+  beforeDestroy() {
+    console.log('实例销毁之前')
+  },
+  destoryed() {
+    console.log('实例销毁')
   },
   methods: {
-    toast () {
+    toast() {
       // weui.topTips('请填写正确的字段')
       // weui.alert('普通的alert')
       // weui.toast('操作成功', 3000)
