@@ -13,6 +13,16 @@ export function createRouter() {
     scrollBehavior: () => ({ y: 0 }),
     routes: [{
       path: '/',
+      redirect: '/index'
+    }, {
+      path: '/index',
+      name: 'Index',
+      meta: {requiresAuth: true},
+      component(resolve) {
+        require(['@/views/shopping/index'], resolve)
+      }
+    }, {
+      path: '/home',
       component: Home
     }, {
       path: '/detail',

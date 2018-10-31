@@ -29,6 +29,7 @@ export default {
 .tabbar1 {
 	table-layout: fixed;
 	box-shadow:0 -5px 30px rgba(0,0,0,0.1);
+	margin-bottom: -0.1rem;
 }
 .badge {
 	position: absolute;
