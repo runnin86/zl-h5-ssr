@@ -21,7 +21,7 @@
     </div>
     <div class="shop-detail clearfix">
       <div class="shop-info">
-        <span class="nhh-store_name">足力购</span>
+        <span class="nhh-store_name"><!--足力购--></span>
         <span class="info">终于等到了您的光临~</span>
       </div>
     </div>
@@ -50,8 +50,7 @@
         <i>通知</i>
       </span>
     </div>
-    <wv-scroll-notice :content="content_text" :scrollamount="1" :direction="'up'">
-    </wv-scroll-notice>
+    <wv-scroll-notice :content="content_text" :scrollamount="1" :direction="'up'"></wv-scroll-notice>
     <div class="arrows">
       <img class="arrows_img" src="/static/images/arrows.png" />
     </div>
@@ -62,6 +61,7 @@
 </template>
 
 <script type="text/babel">
+// import $ from 'zepto'
 import * as data from './../../data'
 
 export default {
@@ -107,7 +107,12 @@ export default {
     })
     this.loadData()
     let _this = this
-    let $ = require('static/js/zepto.min')
+    const $ = () => import('static/js/zepto.min')
+    $.toast('会话失效<br/>即将重新登录', 'forbidden')
+    // let $ = require('static/js/zepto.min')
+    console.log(1234, $(document), $(window))
+    // const $ = () => import('static/js/zepto.min')
+    // let $ = require('static/js/zepto.min')
     console.log(4321, $)
     $(document).ready(function() {
       $('.navbar-location').css({

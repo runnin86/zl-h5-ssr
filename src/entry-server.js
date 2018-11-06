@@ -26,7 +26,8 @@ export default context => {
 
       // Promise.all 组件的 asyncData 方法 拿数据 全部数据返回后 为window.__INITIAL_STATE__赋值并 resolve(app)
       Promise.all(matchedComponents.map(component => {
-        return component.asyncData && component.asyncData(store, router.currentRoute) // 调用组件asyncData方法 传入store与当前路由信息
+        // 调用组件asyncData方法 传入store与当前路由信息
+        return component.asyncData && component.asyncData(store, router.currentRoute)
       })).then(() => {
         isDev && console.log(`data pre-fetch: ${Date.now() - s}ms`)
 

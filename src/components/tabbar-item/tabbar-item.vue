@@ -22,10 +22,10 @@ export default {
         const resolved = this.$router.match(this.to)
         if (!resolved.matched.length) return this.to
 
-        this.$nextTick(() => {
-          this.added = true
-          this.$el.addEventListener('click', this.handleClick)
-        })
+        // this.$nextTick(() => {
+        //   this.added = true
+        //   this.$el.addEventListener('click', this.handleClick)
+        // })
         return resolved.path
       }
       return this.to

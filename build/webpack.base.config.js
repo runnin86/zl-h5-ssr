@@ -17,7 +17,7 @@ module.exports = {
   },
   externals: {
     'weui': 'weui',
-    'zepto': 'Zepto',
+    // 'zepto': 'Zepto', // 引入zepto方式一:需要在index.html中通过script引入
     'BMap': 'BMap',
     'wx': 'jWeixin'
   },
@@ -45,7 +45,9 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       'static':  path.resolve(__dirname, '../static'),
       'assets':  path.resolve(__dirname, '../src/assets'),
-      'components':  path.resolve(__dirname, '../src/components')
+      'components':  path.resolve(__dirname, '../src/components'),
+      // 引入zepto方式二:引入绝对路径
+      'zepto': path.resolve(__dirname, '../static/js/zepto.min.js')
     }
   },
   module: {
@@ -107,6 +109,12 @@ module.exports = {
           limit: 10000,
           name: 'fonts/[name].[hash:7].[ext]'
         }
+      },
+      // 引入zepto方式二：解决zepto等未模块化的问题(TypeError: Cannot read property 'createElement' of undefined)
+      {
+        test: path.resolve(__dirname, '../static/js/zepto.min.js'),
+        loader: 'exports-loader?window.$!script-loader'
+        // loader: 'exports-loader?window.Zepto!script-loader'
       }
     ]
   },

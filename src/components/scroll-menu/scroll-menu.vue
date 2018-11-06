@@ -27,7 +27,7 @@
 </template>
 
 <script type="text/babel">
-import $ from 'zepto'
+// import $ from 'zepto'
 
 export default {
   name: 'wv-scroll-menu',
@@ -51,6 +51,7 @@ export default {
   },
   methods: {
     scrollPosition(i) {
+      let $ = require('static/js/zepto.min')
       // $('.sortMenu').css('left', (i * 82 * -1) + 'px')
       // $('.sortMenu').animate({scrollLeft: i * 82}, 500)
       $('.sortMenu').scrollLeft(i * 82)

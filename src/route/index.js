@@ -13,7 +13,7 @@ export function createRouter() {
     scrollBehavior: () => ({ y: 0 }),
     routes: [{
       path: '/',
-      redirect: '/index'
+      redirect: '/demo'
     }, {
       path: '/index',
       name: 'Index',
