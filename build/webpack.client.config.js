@@ -18,6 +18,10 @@ const config = merge(base, {
     // html模板
     new HTMLPlugin({
       template: 'src/index.html'
+    // }),
+    // new webpack.ProvidePlugin({
+    //   $: 'zepto',
+    //   Zepto: 'zepto'
     })
   ]
 })

@@ -31,5 +31,11 @@ module.exports = {
     'no-mixed-spaces-and-tabs': 2,
     // 禁止使用debugger
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+  },
+  // 当访问未定义的变量时，no-undef 规则将发出警告。指定你所要使用的全局变量，true代表允许重写、false代表不允许重写
+  globals: {
+    'window': true,
+    'document': true,
+    '$': false
   }
 }

@@ -5,7 +5,11 @@ import {
   store,
   router
 } from './main'
+
+/*eslint-disable */
+// 全局引入zepto,已在eslint中配置,不会出现未定义$的情况
 import $ from 'zepto'
+/*eslint-enable */
 
 /* Vue-SSR 根据访问的路由会调用当前路由组件中的asyncData方法由服务端调用相关接口，根据数据
 生成首屏对应的html，并在返回的html中写入 window.__INITIAL_STATE__ = {服务端请求到的数据}
@@ -21,12 +25,10 @@ import $ from 'zepto'
 // 注意beforeRouteEnter无法直接获取到当前组件this，需使用next((vm)=>{ vm即为this }) 获取
 Vue.mixin({
   beforeRouteEnter(to, from, next) {
-    $.toast('会话失效<br/>即将重新登录', 'forbidden')
-    console.log('beforeRouteEnter', $)
+    // $.toast('会话失效<br/>即将重新登录', 'forbidden')
     next((vm) => {
-      const {
-        asyncData
-      } = vm.$options
+      const { asyncData } = vm.$options
+      console.log('beforeRouteEnter')
       if (asyncData) {
         asyncData(vm.$store, vm.$route).then(next).catch(next)
       } else {

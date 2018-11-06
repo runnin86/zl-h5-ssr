@@ -183,7 +183,6 @@
 </template>
 
 <script>
-// import $ from 'zepto'
 // import weui from 'weui'
 import imgIcon from 'static/weui/images/icon_tabbar.png'
 import thumb from 'static/weui/images/icon_nav_button.png'
@@ -218,7 +217,7 @@ export default {
   },
   activated() {
     console.log('keep-alive 组件激活时调用')
-    // $.toast('会话失效<br/>即将重新登录', 'forbidden')
+    $.toast('会话失效<br/>即将重新登录', 'forbidden')
     // weui.alert('普通的alert')
     // weui.toast('操作成功', 3000)
   },
