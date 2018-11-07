@@ -107,13 +107,6 @@ export default {
     })
     this.loadData()
     let _this = this
-    const $ = () => import('static/js/zepto.min')
-    $.toast('会话失效<br/>即将重新登录', 'forbidden')
-    // let $ = require('static/js/zepto.min')
-    console.log(1234, $(document), $(window))
-    // const $ = () => import('static/js/zepto.min')
-    // let $ = require('static/js/zepto.min')
-    console.log(4321, $)
     $(document).ready(function() {
       $('.navbar-location').css({
         'position': 'relative',

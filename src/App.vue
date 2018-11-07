@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="page__bd">
-    <Head></Head>
+    <!-- <Head></Head> -->
     <transition :name="$router.options.transitionName" mode="out-in">
       <keep-alive>
         <router-view class="container container-content viewStyle"></router-view>

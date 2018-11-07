@@ -216,7 +216,7 @@ export default {
     console.log('更新')
   },
   activated() {
-    console.log('keep-alive 组件激活时调用')
+    console.log('keep-alive 组件激活时调用', process.env.BASE_API)
     $.toast('会话失效<br/>即将重新登录', 'forbidden')
     // weui.alert('普通的alert')
     // weui.toast('操作成功', 3000)
