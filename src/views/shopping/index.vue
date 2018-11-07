@@ -33,15 +33,29 @@
     </div>
   </div>
   <!--轮播图-->
-  <div class="row slider-box" style="padding-bottom: 0.2167rem">
+  <!-- <div class="row slider-box" style="padding-bottom: 0.2167rem">
     <wv-swipe class="demo-swipe bannerImg" :auto="4000">
-      <wv-swipe-item class="demo-swipe-item" v-for="bn in turnsInfo" :key="bn.id">
+      <wv-swipe-item class="demo-swipe-item" v-for="bn in sliderlist" :key="bn.id">
         <router-link :to="bn.url">
           <img :src="img_domain + bn.img">
         </router-link>
       </wv-swipe-item>
     </wv-swipe>
-  </div>
+  </div> -->
+  <ul class="ul_box">
+    <li class="one_article" v-for="bn in sliderlist" :key="bn.id">
+      {{bn.title}}
+    </li>
+  </ul>
+  <ul class="ul_box">
+    <li class="one_article" v-for="(item, index) in lists" :key='index' @click="goArticle(item.id)">
+      <img class="user_img" :src="item.author.avatar_url" alt="">
+      <p>
+        <span class="count">评论:{{ item.reply_count }} 阅读:{{ item.visit_count }}</span>&nbsp;
+        <span>{{ item.title }}</span>
+      </p>
+    </li>
+  </ul>
   <!--通知栏-->
   <div class="row notice-box" v-if="!content_text">
     <div class="notice">
@@ -65,6 +79,16 @@
 import * as data from './../../data'
 
 export default {
+  /**
+   * [SSR获取所有组件的asyncData并执行获得初始数据]
+   * @param  {[Object]} store [Vuex Store]
+   * 此函数会在组件实例化之前调用，所以它无法访问 this。需要将 store 和路由信息作为参数传递进去：
+   */
+  asyncData (store, route) {
+    store.dispatch('fetchLists', { page: 1 })
+    // 服务端渲染触发
+    return store.dispatch('fetchSliderList')
+  },
   data() {
     return {
       content_text: '为了商城能带给您更好的服务，于8月10日晚间9：30分至次日早间8：00商城进行系统升级，可能会对您的购物浏览造成不便，敬请谅解!',
@@ -74,6 +98,15 @@ export default {
       sortMenu: data.menuList,
       sortName: data.menuList,
       floorList: []
+    }
+  },
+  // 计算属性
+  computed: {
+    lists () {
+      return this.$store.getters.getLists // 文章列表
+    },
+    sliderlist () {
+      return this.$store.getters.getSliderList // 轮播列表
     }
   },
   mounted() {
@@ -105,7 +138,7 @@ export default {
         })
       }
     })
-    this.loadData()
+    // this.loadData()
     let _this = this
     $(document).ready(function() {
       $('.navbar-location').css({
