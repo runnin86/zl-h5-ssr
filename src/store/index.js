@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as actions from './actions'
+import actions from './actions'
 import * as getters from './getters'
+import { mutations } from './mutations'
 import cart from './modules/cart'
 import user from './modules/user'
 import shop from './modules/shop'
@@ -11,8 +12,9 @@ Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
-  actions, // 事件
+  actions, // 根级别的 action
   getters, // 获取
+  mutations, // 根级别的 mutation
   modules: {
     cart,
     user,

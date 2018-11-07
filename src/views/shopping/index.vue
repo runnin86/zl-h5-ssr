@@ -75,7 +75,7 @@
 </template>
 
 <script type="text/babel">
-// import $ from 'zepto'
+import { mapState } from 'vuex'
 import * as data from './../../data'
 
 export default {
@@ -107,7 +107,22 @@ export default {
     },
     sliderlist () {
       return this.$store.getters.getSliderList // 轮播列表
-    }
+    },
+    ...mapState({
+      // 箭头函数可使代码更简练
+      count: state => state.count,
+
+      // 传字符串参数 'count' 等同于 `state => state.count`
+      countAlias: 'count',
+
+      // 为了能够使用 `this` 获取局部状态，必须使用常规函数
+      countPlusLocalState (state) {
+        return state.count + this.localCount
+      }
+    }, [
+      // 映射 this.count 为 store.state.count
+      'count'
+    ])
   },
   mounted() {
     // 模板编译之后，代替了之前的ready*
