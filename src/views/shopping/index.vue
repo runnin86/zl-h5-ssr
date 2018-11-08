@@ -33,7 +33,7 @@
     </div>
   </div>
   <!--轮播图-->
-  <!-- <div class="row slider-box" style="padding-bottom: 0.2167rem">
+  <div class="row slider-box" style="padding-bottom: 0.2167rem">
     <wv-swipe class="demo-swipe bannerImg" :auto="4000">
       <wv-swipe-item class="demo-swipe-item" v-for="bn in sliderlist" :key="bn.id">
         <router-link :to="bn.url">
@@ -41,13 +41,8 @@
         </router-link>
       </wv-swipe-item>
     </wv-swipe>
-  </div> -->
-  <ul class="ul_box">
-    <li class="one_article" v-for="bn in sliderlist" :key="bn.id">
-      {{bn.title}}
-    </li>
-  </ul>
-  <ul class="ul_box">
+  </div>
+  <!-- <ul class="ul_box">
     <li class="one_article" v-for="(item, index) in lists" :key='index' @click="goArticle(item.id)">
       <img class="user_img" :src="item.author.avatar_url" alt="">
       <p>
@@ -55,7 +50,7 @@
         <span>{{ item.title }}</span>
       </p>
     </li>
-  </ul>
+  </ul> -->
   <!--通知栏-->
   <div class="row notice-box" v-if="!content_text">
     <div class="notice">

@@ -1,4 +1,6 @@
 import axios from 'axios'
+// 配置基础域名
+axios.defaults.baseURL = process.env.BASE_API
 
 // initial state
 const state = {
@@ -27,7 +29,7 @@ const actions = {
   },
   // 获取轮播数据
   fetchSliderList ({ commit }, data) {
-    return axios.post('http://114.215.133.77:8090/api/index/sliderList').then(({data: {code, data, msg}}) => {
+    return axios.post('index/sliderList').then(({data: {code, data, msg}}) => {
       if (code === 1) {
         // 获取数据,回调给调用者
         commit('SET_SLIDER', data.slider)
