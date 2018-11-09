@@ -35,7 +35,7 @@
   <!--轮播图-->
   <div class="row slider-box" style="padding-bottom: 0.2167rem">
     <wv-swipe class="demo-swipe bannerImg" :auto="4000">
-      <wv-swipe-item class="demo-swipe-item" v-for="bn in sliderlist" :key="bn.id">
+      <wv-swipe-item class="demo-swipe-item" v-for="bn in sliderList" :key="bn.id">
         <router-link :to="bn.url">
           <img :src="img_domain + bn.img">
         </router-link>
@@ -70,7 +70,7 @@
 </template>
 
 <script type="text/babel">
-import { mapState } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 import * as data from './../../utils/data.js'
 
 export default {
@@ -80,30 +80,27 @@ export default {
    * 此函数会在组件实例化之前调用，所以它无法访问 this。需要将 store 和路由信息作为参数传递进去：
    */
   asyncData (store, route) {
-    store.dispatch('fetchLists', { page: 1 })
-    // 服务端渲染触发
-    return store.dispatch('fetchSliderList')
+    // 去加载轮播和楼层数据
+    return store.dispatch('fetchIndexData')
   },
   data() {
     return {
       content_text: '为了商城能带给您更好的服务，于8月10日晚间9：30分至次日早间8：00商城进行系统升级，可能会对您的购物浏览造成不便，敬请谅解!',
       imgBase64: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQIW2NkAAIAAAoAAggA9GkAAAAASUVORK5CYII=',
-      turnsInfo: [],
       img_domain: 'http://img.zulibuy.com/banner/',
       sortMenu: data.menuList,
-      sortName: data.menuList,
-      floorList: []
+      sortName: data.menuList
     }
   },
   // 计算属性
   computed: {
+    // 方式一：直接使用在vuex中定义的getters方法名称
     lists () {
       return this.$store.getters.getLists // 文章列表
     },
-    sliderlist () {
-      return this.$store.getters.getSliderList // 轮播列表
-    },
     ...mapState({
+      // 方式二：使用mapState的方式获取shop里的
+      sliderList: state => state.shop.sliderList,
       // 箭头函数可使代码更简练
       count: state => state.count,
 
@@ -117,6 +114,14 @@ export default {
     }, [
       // 映射 this.count 为 store.state.count
       'count'
+    ]),
+    ...mapGetters([
+      // 方式三：通过统一暴露的getters
+      'floorList',
+      {
+        // 键为在当前页面展示,值为modules中getters中定义的键
+        cartBadgeNum: 'cartBadge'
+      }
     ])
   },
   mounted() {
@@ -148,7 +153,6 @@ export default {
         })
       }
     })
-    // this.loadData()
     let _this = this
     $(document).ready(function() {
       $('.navbar-location').css({
@@ -179,42 +183,13 @@ export default {
       // 默认全局分享
       let desc = '【足力购】帅哥美女们，快来足力购逛逛，捧个场吧！'
       let link = window.location.origin + base + '/?#/index'
-      this.initWechatShare(
-        '足力购商城首页',
-        desc,
-        imgUrl,
-        link)
+      this.initWechatShare('足力购商城首页', desc, imgUrl, link)
     }, 300)
   },
   methods: {
-    loadData() {
-      // 获取轮播图数据
-      this.$http.post('index/sliderList')
-      .then(({data: {code, data, msg}}) => {
-        // console.log(data)
-        if (code === 1) {
-          this.turnsInfo = data.slider
-        } else {
-          console.error('获取轮播图失败:' + msg)
-        }
-      }, (response) => {
-        // error callback
-        console.log(response)
-      })
-      // 获取楼层数据
-      this.$http.post('index/floor')
-      .then(({data: {code, data, msg}}) => {
-        console.log(data)
-        if (code === 1) {
-          this.floorList = data.floor
-        } else {
-          console.error('获取轮播图失败:' + msg)
-        }
-      }, (response) => {
-        // error callback
-        console.log(response)
-      })
-    },
+    ...mapMutations([
+      'RECORD_USERINFO'
+    ]),
     /**
      * [redirectTo 页面跳转]
      * @param  {[type]} type [确定跳转页面是列表还是详情]

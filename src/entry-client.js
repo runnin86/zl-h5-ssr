@@ -4,7 +4,7 @@ import {
   app,
   store,
   router
-} from './main'
+} from './app'
 
 /*eslint-disable */
 // 全局引入zepto,已在eslint中配置,不会出现未定义$的情况

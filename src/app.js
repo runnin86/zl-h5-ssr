@@ -1,19 +1,18 @@
 // main.js
 import Vue from 'vue'
-import App from './App'
+import App from './App.vue'
 import axios from 'axios'
 import WeVue from './components'
 // import FastClick from 'fastclick'
 
 import { createRouter } from './route/index'
-// import { createStore } from './store/index'
-import store from './store/index'
+import { createStore } from './store/index'
 import { sync } from 'vuex-router-sync' // 把当VueRouter状态同步到Vuex中
 
 // 创建 router 实例
 const router = createRouter()
 // 创建 store 实例
-// const store = createStore()
+const store = createStore()
 
 // 将路由状态添加到vuex中
 sync(store, router)

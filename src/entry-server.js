@@ -1,5 +1,5 @@
 // entry-server.js
-import { app, router, store } from './main'
+import { app, router, store } from './app'
 
 const isDev = process.env.NODE_ENV !== 'production' // 开发模式 || 生产模式
 

@@ -13,14 +13,11 @@ module.exports = {
   },
   output: {
     // webpack输出的目标文件夹路径（例如：/dist）
-    path: config.build.assetsRoot,
+    path: path.resolve(__dirname, '../dist'),
     // webpack输出bundle文件命名格式
-    filename: '[name].js',
+    filename: '[name].[chunkhash].js',
     // webpack编译输出的发布路径
-    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
-    // path: path.resolve(__dirname, '../dist'),
-    // publicPath: '/dist/',
-    // filename: '[name].[chunkhash].js'
+    publicPath: '/dist/'
   },
   externals: {
     'weui': 'weui',
