@@ -6,5 +6,5 @@ module.exports = merge(prodEnv, {
   APP_ID: '"wxda10e6b61a107d64"',
   APP_SECRET: '"76d0f76a4260701b9848ff202ce2e540"',
   BASE_API: '"http://114.215.133.77:8090/api"'
-  // BASE_API: '"//127.0.0.1:8090/api"'
+  // BASE_API: '"http://127.0.0.1:8090/api"'
 })
