@@ -1,4 +1,5 @@
 const path = require('path')
+const config = require('../config')
 
 module.exports = {
   devtool: '#source-map',
@@ -11,9 +12,15 @@ module.exports = {
     ]
   },
   output: {
-    path: path.resolve(__dirname, '../dist'),
-    publicPath: '/dist/',
-    filename: '[name].[chunkhash].js'
+    // webpack输出的目标文件夹路径（例如：/dist）
+    path: config.build.assetsRoot,
+    // webpack输出bundle文件命名格式
+    filename: '[name].js',
+    // webpack编译输出的发布路径
+    publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath
+    // path: path.resolve(__dirname, '../dist'),
+    // publicPath: '/dist/',
+    // filename: '[name].[chunkhash].js'
   },
   externals: {
     'weui': 'weui',
@@ -32,8 +39,7 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     // resolve模块的时候要搜索的文件夹
     modules: [
-      path.resolve(__dirname, '../src'),
-      path.resolve(__dirname, '../node_modules')
+      path.resolve(__dirname, '../src'), path.resolve(__dirname, '../node_modules')
     ],
     /*
      * 创建路径别名，有了别名之后引用模块更方便，

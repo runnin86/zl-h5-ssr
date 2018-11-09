@@ -28,7 +28,6 @@ Vue.mixin({
     // $.toast('会话失效<br/>即将重新登录', 'forbidden')
     next((vm) => {
       const { asyncData } = vm.$options
-      console.log('beforeRouteEnter')
       if (asyncData) {
         asyncData(vm.$store, vm.$route).then(next).catch(next)
       } else {
@@ -41,19 +40,18 @@ Vue.mixin({
 // （2）
 // 全局mixin，beforeRouteUpdate，切换路由时，调用asyncData方法拉取数据进行客户端渲染
 // beforeRouteUpdate可直接获取到this对象（2.2版本以上）
-/* Vue.mixin({
+Vue.mixin({
   beforeRouteUpdate (to, from, next) {
     console.log('beforeRouteUpdate')
     const { asyncData } = this.$options
     if (asyncData) {
       // 传入store与route
-      asyncData(this.$store, this.$route).then(next).catch(next)
+      asyncData({store: this.$store, route: to}).then(next).catch(next)
     } else {
       next()
     }
   }
 })
-*/
 
 // （3）
 // 注册全局mixin，所有组件beforeMount时，如果根组件_isMounted为真（即根实例已mounte，该钩子函数是由路由跳转触发的）
@@ -77,5 +75,6 @@ if (window.__INITIAL_STATE__) {
 }
 
 router.onReady(() => {
+  // actually mount to DOM
   app.$mount('#app')
 })

@@ -71,7 +71,7 @@
 
 <script type="text/babel">
 import { mapState } from 'vuex'
-import * as data from './../../data'
+import * as data from './../../utils/data.js'
 
 export default {
   /**

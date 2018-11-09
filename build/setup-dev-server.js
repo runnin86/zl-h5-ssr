@@ -1,8 +1,11 @@
 const path = require('path')
 const webpack = require('webpack')
+const express = require('express')
 const MFS = require('memory-fs')
 const clientConfig = require('./webpack.client.config')
 const serverConfig = require('./webpack.server.config')
+// 获取配置
+const config = require('../config')
 
 module.exports = function setupDevServer (app, cb) {
   let bundle
@@ -26,6 +29,11 @@ module.exports = function setupDevServer (app, cb) {
     }
   })
   app.use(devMiddleware)
+
+  // 静态资源的路径
+  var staticPath = path.posix.join(config.dev.assetsPublicPath, config.dev.assetsSubDirectory)
+  // 将静态资源挂到express服务器上
+  app.use(staticPath, express.static('./static'))
 
   clientCompiler.plugin('done', () => {
     const fs = devMiddleware.fileSystem

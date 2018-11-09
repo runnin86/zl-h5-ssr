@@ -99,7 +99,7 @@ const app = new Vue({
   router,
   store,
   render: h => h(App)
-}) // .$mount('#app')
+})
 
 /**
  * 导出 router and store.
