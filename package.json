@@ -30,8 +30,7 @@
     "vue-server-renderer": "^2.3.0",
     "vue-style-loader": "^2.0.4",
     "vuex": "^2.2.1",
-    "vuex-router-sync": "^4.1.2",
-    "weui.js": "^1.1.4"
+    "vuex-router-sync": "^4.1.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.7",

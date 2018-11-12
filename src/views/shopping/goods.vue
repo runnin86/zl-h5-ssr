@@ -100,7 +100,7 @@
 
 <script>
 import qs from 'qs'
-// let loading
+let loading
 
 export default {
   data() {
@@ -130,7 +130,7 @@ export default {
   created() {},
   beforeDestroy() {},
   activated() {
-    // loading = weui && weui.loading('加载中')
+    loading = weui && weui.loading('加载中')
     this.main = this.photo = null
     this.buyNum = 1
     this.pid = this.$route.query.gid
@@ -167,7 +167,7 @@ export default {
     // })
   },
   deactivated() {
-    // loading.hide()
+    loading.hide()
   },
   methods: {
     loadGood() {
@@ -191,9 +191,9 @@ export default {
           $.toast(msg, 'forbidden')
           console.error('获取商品失败:' + msg)
         }
-        // loading.hide()
+        loading.hide()
       }, (response) => {
-        // loading.hide()
+        loading.hide()
         // error callback
         console.error(response)
       })
