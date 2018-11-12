@@ -136,35 +136,32 @@ export default {
     this.pid = this.$route.query.gid
     this.loadGood()
     this.$store.commit('CHANGE_IS_INDEX', false)
-    $('.red-dot').css({
-      'left': this.startX + 'px',
-      'bottom': this.moveY + 'px'
-    })
+    $('.red-dot').css({ 'left': this.startX + 'px', 'bottom': this.moveY + 'px' })
     /* 客服弹窗 */
-    // $(document).ready(function () {
-    //   $('.goodsTxt a').each(function (index, item) {
-    //     $(item).click(function () {
-    //       console.log(index)
-    //       var infoScrollH = $('.tab-content div').eq(index).offset().top
-    //       console.log(infoScrollH)
-    //       $(window).scrollTop(infoScrollH)
-    //     })
-    //   })
-    //   $('.goodsTxt').css({'position': 'relative', 'width': 'auto'})
-    //   var txtTop = $('.goodsTxt').offset().top
-    //   $(document).on('scroll', function () {
-    //     if ($(window).scrollTop() < txtTop) {
-    //       $('.goodsTxt').css({'position': 'relative', 'width': 'auto', 'margin-left': '0px'})
-    //     } else {
-    //       $('.goodsTxt').css({'position': 'fixed', 'top': '0', 'width': '100%', 'margin-left': '-10px'})
-    //     }
-    //     if ($('.serviceSystem').offset().top - $(window).scrollTop() < 100) {
-    //       $('.blackLine').animate({left: '75%'}, 'slow')
-    //     } else {
-    //       $('.blackLine').animate({left: '25%'}, 'slow')
-    //     }
-    //   })
-    // })
+    $(document).ready(function () {
+      $('.goodsTxt a').each(function (index, item) {
+        $(item).click(function () {
+          console.log(index)
+          var infoScrollH = $('.tab-content div').eq(index).offset().top
+          console.log(infoScrollH)
+          $(window).scrollTop(infoScrollH)
+        })
+      })
+      $('.goodsTxt').css({'position': 'relative', 'width': 'auto'})
+      var txtTop = $('.goodsTxt').offset().top
+      $(document).on('scroll', function () {
+        if ($(window).scrollTop() < txtTop) {
+          $('.goodsTxt').css({'position': 'relative', 'width': 'auto', 'margin-left': '0px'})
+        } else {
+          $('.goodsTxt').css({'position': 'fixed', 'top': '0', 'width': '100%', 'margin-left': '-10px'})
+        }
+        if ($('.serviceSystem').offset().top - $(window).scrollTop() < 100) {
+          $('.blackLine').animate({left: '75%'}, 'slow')
+        } else {
+          $('.blackLine').animate({left: '25%'}, 'slow')
+        }
+      })
+    })
   },
   deactivated() {
     loading.hide()
