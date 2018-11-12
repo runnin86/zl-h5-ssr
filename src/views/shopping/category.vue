@@ -25,12 +25,10 @@
     </div>
   </div>
 
-  <div id="mescrollDiv" class="mescroll recommend-goods row">
+  <div id="scrollDiv" class="mescroll recommend-goods row">
     <ul id="dataList" class="goods-lists data-list clearfix">
-      <li v-for="g in goods_list">
-        <router-link :to="{
-          name: 'Goods',  path: '/shopping/goods', query: { gid: g.productId }
-        }">
+      <li v-for="g in goods_list" :key="g.id">
+        <router-link :to="{name: 'Goods',  path: '/shopping/goods', query: { gid: g.productId }}">
           <div class="goods-img">
             <img :src="g.img?(img_domain+g.img):'/static/images/no_picture.jpg'">
           </div>
@@ -49,10 +47,9 @@
 </template>
 
 <script>
-import $ from 'zepto'
 import qs from 'qs'
-import MeScroll from 'static/mescroll/meScroll.min'
-import * as data from './../../data'
+import MeScroll from 'MeScroll'
+import * as data from './../../utils/data.js'
 
 export default {
   data () {
@@ -125,9 +122,9 @@ export default {
       this.cid = cid
       this.goods_list = []
       // 重置列表数据
-      this.mescroll.resetUpScroll()
+      this.mescroll && this.mescroll.resetUpScroll()
       // 隐藏回到顶部的按钮
-      this.mescroll.hideTopBtn()
+      this.mescroll && this.mescroll.hideTopBtn()
       // 菜单展开合并
       this.$refs.menuComp.subitemsExpanded = false
       // 设置网页标题
@@ -139,7 +136,7 @@ export default {
     initScroll() {
       // 创建MeScroll对象,down可以不用配置,因为内部已默认开启下拉刷新,重置列表数据为第一页
       let self = this
-      self.mescroll = new MeScroll('mescrollDiv', {
+      self.mescroll = new MeScroll('scrollDiv', {
         down: {
           use: true, // 是否初始化下拉刷新; 默认true
           isLock: true

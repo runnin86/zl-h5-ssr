@@ -36,6 +36,7 @@ module.exports = {
   globals: {
     'window': true,
     'document': true,
-    '$': false
+    '$': false,
+    'MeScroll': false
   }
 }

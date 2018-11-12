@@ -17,10 +17,22 @@ export function createRouter() {
     }, {
       path: '/index',
       name: 'Index',
-      meta: {requiresAuth: true},
       component(resolve) {
         require(['@/views/shopping/index'], resolve)
       }
+    }, {
+      path: '/category',
+      name: 'Category',
+      component(resolve) {
+        require(['@/views/shopping/category'], resolve)
+      }
+    // }, {
+    //   path: '/shopping/goods',
+    //   meta: {requiresAuth: true, scrollToTop: true},
+    //   name: 'Goods',
+    //   component(resolve) {
+    //     require(['@/views/shopping/goods'], resolve)
+    //   }
     }, {
       path: '/home',
       component: Home

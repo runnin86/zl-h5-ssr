@@ -50,7 +50,8 @@ module.exports = {
       'assets':  path.resolve(__dirname, '../src/assets'),
       'components':  path.resolve(__dirname, '../src/components'),
       // 引入zepto方式二:引入绝对路径
-      'zepto': path.resolve(__dirname, '../static/js/zepto.min.js')
+      'zepto': path.resolve(__dirname, '../static/js/zepto.min.js'),
+      'MeScroll': path.resolve(__dirname, '../static/mescroll/meScroll.min.js')
     }
   },
   module: {
@@ -118,6 +119,10 @@ module.exports = {
         test: path.resolve(__dirname, '../static/js/zepto.min.js'),
         loader: 'exports-loader?window.$!script-loader'
         // loader: 'exports-loader?window.Zepto!script-loader'
+      },
+      {
+        test: path.resolve(__dirname, '../static/js/mescroll/meScroll.min.js'),
+        loader: 'exports-loader?window.MeScroll!script-loader'
       }
     ]
   },
