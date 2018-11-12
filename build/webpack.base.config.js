@@ -20,7 +20,6 @@ module.exports = {
     publicPath: '/dist/'
   },
   externals: {
-    'weui': 'weui',
     // 'zepto': 'Zepto', // 引入zepto方式一:需要在index.html中通过script引入
     'BMap': 'BMap',
     'wx': 'jWeixin'

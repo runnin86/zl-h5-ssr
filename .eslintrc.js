@@ -37,6 +37,7 @@ module.exports = {
     'window': true,
     'document': true,
     '$': false,
-    'MeScroll': false
+    'MeScroll': false,
+    'weui': false
   }
 }

@@ -7,7 +7,7 @@
       </keep-alive>
     </transition>
 
-    <wv-tabbar :isShow="true" v-bind:itemList="tabbarList" fixed></wv-tabbar>
+    <wv-tabbar :isShow="showIndex" v-bind:itemList="tabbarList" fixed></wv-tabbar>
 
     <!-- 悬浮导航 -->
     <div class="quickIcon" v-if = "$route.path!=='/shopGoods/goodsInfo' && $route.path!=='/shopping/goods'">

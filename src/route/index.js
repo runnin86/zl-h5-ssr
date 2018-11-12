@@ -26,13 +26,13 @@ export function createRouter() {
       component(resolve) {
         require(['@/views/shopping/category'], resolve)
       }
-    // }, {
-    //   path: '/shopping/goods',
-    //   meta: {requiresAuth: true, scrollToTop: true},
-    //   name: 'Goods',
-    //   component(resolve) {
-    //     require(['@/views/shopping/goods'], resolve)
-    //   }
+    }, {
+      path: '/shopping/goods',
+      meta: {requiresAuth: true, scrollToTop: true},
+      name: 'Goods',
+      component(resolve) {
+        require(['@/views/shopping/goods'], resolve)
+      }
     }, {
       path: '/home',
       component: Home

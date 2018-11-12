@@ -9,6 +9,7 @@ import {
 /*eslint-disable */
 // 全局引入zepto,已在eslint中配置,不会出现未定义$的情况
 import $ from 'zepto'
+import weui from 'weui.js'
 /*eslint-enable */
 
 /* Vue-SSR 根据访问的路由会调用当前路由组件中的asyncData方法由服务端调用相关接口，根据数据

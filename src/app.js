@@ -17,11 +17,16 @@ const store = createStore()
 // 将路由状态添加到vuex中
 sync(store, router)
 
-// if ('addEventListener' in document) {
-//   document.addEventListener('DOMContentLoaded', function () {
-//     FastClick.attach(document.body)
-//   }, false)
-// }
+// 解决移动端300ms延迟问题
+if (typeof window !== 'undefined') {
+  const Fastclick = require('fastclick')
+  Fastclick.attach(document.body)
+  // if ('addEventListener' in document) {
+  //   document.addEventListener('DOMContentLoaded', function () {
+  //     FastClick.attach(document.body)
+  //   }, false)
+  // }
+}
 
 Vue.config.debug = true
 Vue.config.productionTip = false

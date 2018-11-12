@@ -23,7 +23,7 @@
           </wv-swipe-item>
         </wv-swipe>
       </div>
-      <span class="sale_done h5" v-if="goodsCount === '0'">抢光了</span>
+      <span class="sale_done h5" v-if="main && main.number === 0">抢光了</span>
     </div>
     <!--轮播完 -->
     <div class="row titleCont" style="margin:0px; margin-top:10px">
@@ -76,13 +76,13 @@
         </a>
         <!-- 购物车图标 -->
         <router-link :to="'/cart'">
-          <a class="cart_png addCartPng">
+          <div class="cart_png addCartPng">
             <span class="iconfont-yzg icon-yzg-msnui-cart"></span>
             <span class="quantity gaibanBg" v-show="$store.getters.cartBadge>0">
               {{$store.getters.cartBadge}}
             </span>
             <span style="color:#333;font-size:10px;display: block;margin-top:-10px;">购物车</span>
-          </a>
+          </div>
         </router-link>
       </div>
       <div class="clearfix" style=" padding-left:40%;">
@@ -100,56 +100,9 @@
 
 <script>
 import qs from 'qs'
-import $ from 'zepto'
-import weui from 'weui.js'
-let loading
+// let loading
 
 export default {
-  init() {
-    // console.log('初始化')
-  },
-  created() {},
-  beforeDestroy() {},
-  activated() {
-    loading = weui.loading('加载中')
-    this.main = this.photo = null
-    this.buyNum = 1
-    this.pid = this.$route.query.gid
-    this.loadGood()
-    this.$store.commit('CHANGE_IS_INDEX', false)
-    $('.red-dot').css({
-      'left': this.startX + 'px',
-      'bottom': this.moveY + 'px'
-    })
-    /* 客服弹窗 */
-    $(document).ready(function () {
-      $('.goodsTxt a').each(function (index, item) {
-        $(item).click(function () {
-          console.log(index)
-          var infoScrollH = $('.tab-content div').eq(index).offset().top
-          console.log(infoScrollH)
-          $(window).scrollTop(infoScrollH)
-        })
-      })
-      $('.goodsTxt').css({'position': 'relative', 'width': 'auto'})
-      var txtTop = $('.goodsTxt').offset().top
-      $(document).on('scroll', function () {
-        if ($(window).scrollTop() < txtTop) {
-          $('.goodsTxt').css({'position': 'relative', 'width': 'auto', 'margin-left': '0px'})
-        } else {
-          $('.goodsTxt').css({'position': 'fixed', 'top': '0', 'width': '100%', 'margin-left': '-10px'})
-        }
-        if ($('.serviceSystem').offset().top - $(window).scrollTop() < 100) {
-          $('.blackLine').animate({left: '75%'}, 'slow')
-        } else {
-          $('.blackLine').animate({left: '25%'}, 'slow')
-        }
-      })
-    })
-  },
-  deactivated() {
-    loading.hide()
-  },
   data() {
     return {
       imgBase64: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAC0lEQVQIW2NkAAIAAAoAAggA9GkAAAAASUVORK5CYII=',
@@ -167,8 +120,54 @@ export default {
       vy: 4,
       timer: 20,
       delTimer: null,
-      addTimer: null
+      addTimer: null,
+      continuous: true // 轮播图是否自动播放
     }
+  },
+  init() {
+    // console.log('初始化')
+  },
+  created() {},
+  beforeDestroy() {},
+  activated() {
+    // loading = weui && weui.loading('加载中')
+    this.main = this.photo = null
+    this.buyNum = 1
+    this.pid = this.$route.query.gid
+    this.loadGood()
+    this.$store.commit('CHANGE_IS_INDEX', false)
+    $('.red-dot').css({
+      'left': this.startX + 'px',
+      'bottom': this.moveY + 'px'
+    })
+    /* 客服弹窗 */
+    // $(document).ready(function () {
+    //   $('.goodsTxt a').each(function (index, item) {
+    //     $(item).click(function () {
+    //       console.log(index)
+    //       var infoScrollH = $('.tab-content div').eq(index).offset().top
+    //       console.log(infoScrollH)
+    //       $(window).scrollTop(infoScrollH)
+    //     })
+    //   })
+    //   $('.goodsTxt').css({'position': 'relative', 'width': 'auto'})
+    //   var txtTop = $('.goodsTxt').offset().top
+    //   $(document).on('scroll', function () {
+    //     if ($(window).scrollTop() < txtTop) {
+    //       $('.goodsTxt').css({'position': 'relative', 'width': 'auto', 'margin-left': '0px'})
+    //     } else {
+    //       $('.goodsTxt').css({'position': 'fixed', 'top': '0', 'width': '100%', 'margin-left': '-10px'})
+    //     }
+    //     if ($('.serviceSystem').offset().top - $(window).scrollTop() < 100) {
+    //       $('.blackLine').animate({left: '75%'}, 'slow')
+    //     } else {
+    //       $('.blackLine').animate({left: '25%'}, 'slow')
+    //     }
+    //   })
+    // })
+  },
+  deactivated() {
+    // loading.hide()
   },
   methods: {
     loadGood() {
@@ -192,9 +191,9 @@ export default {
           $.toast(msg, 'forbidden')
           console.error('获取商品失败:' + msg)
         }
-        loading.hide()
+        // loading.hide()
       }, (response) => {
-        loading.hide()
+        // loading.hide()
         // error callback
         console.error(response)
       })
