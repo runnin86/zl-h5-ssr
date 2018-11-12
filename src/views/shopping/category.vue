@@ -262,10 +262,10 @@ export default {
 
 .mescroll {
   position: fixed;
-  top: 88px;
-  bottom: 50px;
+  top: 1.8rem;
+  padding-bottom: 4.2rem;
+  /* width: 100%; */
   /*height: auto;*/
-  width: 100%;
 }
 
 /*展示上拉加载的数据列表*/
