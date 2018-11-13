@@ -1,3 +1,4 @@
+import qs from 'qs'
 import axios from 'axios'
 // 配置基础域名
 axios.defaults.baseURL = process.env.BASE_API
@@ -6,14 +7,17 @@ axios.defaults.baseURL = process.env.BASE_API
 const state = {
   lists: [], // 文章列表
   sliderList: [], // 轮播列表
-  floorList: [] // 楼层列表
+  floorList: [], // 楼层列表
+  product: null, // 单个商品数据
+  productProfile: null // 单个商品的详情
 }
 
 // getters
 const getters = {
   getLists: state => { return state.lists },
   getSliderList: state => state.sliderList,
-  getFloorList: state => state.floorList
+  getFloorList: state => state.floorList,
+  getProductProfile: state => state.productProfile
 }
 
 // actions(异步)
@@ -36,7 +40,7 @@ const actions = {
   async fetchSlider ({ commit }, data) {
     return axios.post('index/sliderList').then(({data: {code, data, msg}}) => {
       if (code === 1) {
-        // 获取数据,回调给调用者
+        // 获取数据,设置在state中
         commit('SET_SLIDER', data.slider)
       }
     })
@@ -45,8 +49,35 @@ const actions = {
   async fetchFloor ({ commit }, data) {
     return axios.post('index/floor').then(({data: {code, data, msg}}) => {
       if (code === 1) {
-        // 获取数据,回调给调用者
         commit('SET_FLOOR', data.floor)
+      }
+    })
+  },
+  // 获取商品明细(主信息和轮播图)
+  fetchProduct ({ commit }, pid) {
+    // let loading = weui && weui.loading('加载中')
+    return axios.post('product/productInfo2Img', qs.stringify({
+      pid: pid
+    })).then(({data: {code, data, msg}}) => {
+      if (code === 1) {
+        commit('SET_PRODUCT', data)
+      } else {
+        // $.toast(msg, 'forbidden')
+      }
+      // loading.hide()
+    }, (response) => {
+      // loading.hide()
+      // error callback
+      console.error(response)
+    })
+  },
+  // 获取商品详情
+  fetchProductProfile ({ commit }, pid) {
+    return axios.post('product/productProfile', qs.stringify({
+      pid: pid
+    })).then(({data: {code, data, msg}}) => {
+      if (code === 1) {
+        commit('SET_PRODUCT_PROFILE', data.profile)
       }
     })
   }
@@ -62,6 +93,12 @@ const mutations = {
   },
   SET_FLOOR (state, data) {
     state.floorList = data
+  },
+  SET_PRODUCT (state, data) {
+    state.product = data
+  },
+  SET_PRODUCT_PROFILE (state, data) {
+    state.productProfile = data
   }
 }
 
