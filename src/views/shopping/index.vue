@@ -33,7 +33,7 @@
     </div>
   </div>
   <!--轮播图-->
-  <div class="row slider-box" style="padding-bottom: 0.2167rem">
+  <div class="row slider-box">
     <wv-swipe class="demo-swipe bannerImg" :auto="4000">
       <wv-swipe-item class="demo-swipe-item" v-for="bn in sliderList" :key="bn.id">
         <router-link :to="bn.url">

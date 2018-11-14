@@ -24,13 +24,14 @@
       </wv-scroll-menu>
     </div>
   </div>
-
-  <div id="scrollDiv" class="mescroll recommend-goods row">
+  <!--滑动区域-->
+  <mescroll-vue ref="mescroll" :up="mescrollUp" @init="mescrollInit" class="mescroll recommend-goods row">
     <ul id="dataList" class="goods-lists data-list clearfix">
-      <li v-for="g in goods_list" :key="g.id">
+      <li v-for="g in dataList" :key="g.productId">
         <router-link :to="{name: 'Goods',  path: '/shopping/goods', query: { gid: g.productId }}">
           <div class="goods-img">
-            <img :src="g.img?(img_domain+g.img):'/static/images/no_picture.jpg'">
+            <!-- <img :src="g.img?(img_domain+g.img):'/static/images/no_picture.jpg'"> -->
+            <img :imgurl="g.img&&(img_domain+g.img)" src="/static/images/no_picture.jpg"/>
           </div>
         </router-link>
         <div class="goods-price">
@@ -42,16 +43,28 @@
         <div class="goods-title" v-html="g.productName+(g.productDesc?'('+g.productDesc+')':'')"></div>
       </li>
     </ul>
-  </div>
+  </mescroll-vue>
 </div>
 </template>
 
 <script>
 import qs from 'qs'
-import MeScroll from 'MeScroll'
+import { mapGetters } from 'vuex'
 import * as data from './../../utils/data.js'
+// 引入mescroll的vue组件
+import MescrollVue from 'static/mescroll/mescroll.vue'
 
 export default {
+  // asyncData (store, route) {
+  //   return store.dispatch('fetchCategory', {
+  //     type: 0,
+  //     pagenum: 1,
+  //     pagesize: 10
+  //   }) // 服务端渲染触发
+  // },
+  components: {
+    MescrollVue
+  },
   data () {
     return {
       goods_list: [],
@@ -60,16 +73,63 @@ export default {
       cid: 0,
       sortMenu: data.menuList,
       sortName: data.menuList,
-      mescroll: null,
-      scrollTop: 0
+      scrollTop: 0,
+      mescroll: null, // mescroll实例对象
+      mescrollUp: {
+        // 上拉回调
+        callback: this.upCallback,
+        // 如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看; 默认5
+        noMoreSize: 5,
+        page: {
+          num: 0, // 当前页码,默认0,回调之前会加1,即callback(page)会从1开始
+          size: 10 // 每页数据的数量
+        },
+        htmlLoading: '<p class="upwarp-progress mescroll-rotate"></p><p class="upwarp-tip">努力加载..</p>',
+        htmlNodata: '<p class="upwarp-nodata">-- 没有更多啦 --</p>',
+        // 列表滑动监听
+        onScroll: this.scrollFn,
+        scrollbar: {
+          use: true,
+          barClass: 'mescroll-bar'
+        },
+        // 回到顶部按钮的图片路径,支持网络图
+        toTop: {
+          src: 'static/mescroll/mescroll-totop.png',
+          warpClass: 'mescroll-totop',
+          showClass: 'mescroll-fade-in',
+          hideClass: 'mescroll-fade-out'
+        },
+        empty: {
+          // 列表第一页无任何数据时,显示的空提示布局; 需配置warpId才生效;
+          warpId: 'dataList', // 父布局的id;
+          icon: 'static/mescroll/mescroll-empty.png',
+          tip: '亲,暂无相关商品哦~' // 提示
+          // btntext: '去逛逛 >', // 按钮,默认""
+          // btnClick () { // 点击按钮的回调,默认null
+          //   alert('点击了按钮,具体逻辑自行实现')
+          // }
+        },
+        lazyLoad: {
+          use: true // 是否开启懒加载,默认false
+        }
+      },
+      dataList: [], // 列表数据
+      pdType: 0 // 菜单
     }
+  },
+  // 计算属性
+  computed: {
+    ...mapGetters({
+      // 键为在当前页面展示,值为modules中getters中定义的键
+      categoryList: 'getCategoryList'
+    })
   },
   mounted () {
     // 模板编译之后，代替了之前的ready*
     this.$nextTick(function() {
       if (this.$parent.fromPath !== '/shopping/goods' || this.goods_list.length === 0) {
         // 非详情页或数据为空要加载数据
-        this.initScroll()
+        // this.initScroll()
       }
     })
     // 获取滑动菜单组件的事件通信
@@ -102,7 +162,7 @@ export default {
       this.changeCid(this.$route.params.cid)
     }
     if (this.mescroll && this.$parent.fromPath === '/shopping/goods') {
-      this.mescroll.scrollTo(this.scrollTop)
+      this.mescroll.scrollTo(this.scrollTop, 0)
     }
   },
   /*
@@ -110,7 +170,16 @@ export default {
    */
   deactivated() {
     // 隐藏回到顶部的按钮
-    this.mescroll.hideTopBtn()
+    // this.mescroll.hideTopBtn()
+  },
+  beforeRouteEnter (to, from, next) { // 如果没有配置回到顶部按钮或isBounce,则beforeRouteEnter不用写
+    next(vm => {
+      vm.$refs.mescroll && vm.$refs.mescroll.beforeRouteEnter() // 进入路由时,滚动到原来的列表位置,恢复回到顶部按钮和isBounce的配置
+    })
+  },
+  beforeRouteLeave (to, from, next) { // 如果没有配置回到顶部按钮或isBounce,则beforeRouteLeave不用写
+    this.$refs.mescroll.beforeRouteLeave() // 退出路由时,记录列表滚动的位置,隐藏回到顶部按钮和isBounce的配置
+    next()
   },
   methods: {
     /*
@@ -147,17 +216,12 @@ export default {
           // 如果列表已无数据,可设置列表的总数量要大于半页才显示无更多数据;避免列表数据过少(比如只有一条数据),显示无更多数据会不好看; 默认5
           noMoreSize: 5,
           // 可配置每页8条数据,默认10
-          page: {
-            size: 10
-          },
+          page: { size: 10 },
           htmlLoading: '<p class="upwarp-progress mescroll-rotate"></p><p class="upwarp-tip">努力加载..</p>',
           htmlNodata: '<p class="upwarp-nodata">-- 没有更多啦 --</p>',
           // 列表滑动监听
           onScroll: self.scrollFn,
-          scrollbar: {
-            use: true,
-            barClass: 'mescroll-bar'
-          },
+          scrollbar: { use: true, barClass: 'mescroll-bar' },
           // 配置回到顶部按钮
           toTop: {
             src: 'static/mescroll/mescroll-totop.png',
@@ -188,11 +252,11 @@ export default {
     /*
      * 上拉回调 page = {num:1, size:10}; num:当前页 ,默认从1开始; size:每页数据条数,默认10
      */
-    upCallback: function(page) {
+    upCallback2: function(page) {
       console.log('page.num==' + page.num + ', page.size==' + page.size)
       // 加载数据
-      var self = this
-      this.getListDataFromNet(page.num, page.size, function(data) {
+      let self = this
+      this.$store.dispatch('fetchCategory', {type: this.cid, pagenum: page.num, pagesize: page.size}).then((data) => {
         // data = [] // 打开本行注释,可演示列表无任何数据empty的配置
 
         // 如果是第一页需手动制空列表
@@ -204,12 +268,31 @@ export default {
         // 加载成功的回调,隐藏下拉刷新和上拉加载的状态;
         // 传参:数据的总数; mescroll会自动判断列表是否有无下一页数据,如果数据不满一页则提示无更多数据;
         self.mescroll.endSuccess(data.length)
-      }, function() {
+        console.log(self.goods_list, self.categoryList)
+      }, (msg) => {
+        $.toast(msg, 'forbidden')
         // 加载失败的回调,隐藏下拉刷新和上拉加载的状态;
         self.mescroll.endErr()
       })
+      // var self = this
+      // this.getListDataFromNet(page.num, page.size, function(data) {
+      //   // data = [] // 打开本行注释,可演示列表无任何数据empty的配置
+
+      //   // 如果是第一页需手动制空列表
+      //   if (page.num === 1) self.goods_list = []
+
+      //   // 更新列表数据
+      //   self.goods_list = self.goods_list.concat(data)
+
+      //   // 加载成功的回调,隐藏下拉刷新和上拉加载的状态;
+      //   // 传参:数据的总数; mescroll会自动判断列表是否有无下一页数据,如果数据不满一页则提示无更多数据;
+      //   self.mescroll.endSuccess(data.length)
+      // }, function() {
+      //   // 加载失败的回调,隐藏下拉刷新和上拉加载的状态;
+      //   self.mescroll.endErr()
+      // })
     },
-    getListDataFromNet(pageNum, pageSize, successCallback, errorCallback) {
+    getListDataFromNet(pdType, pageNum, pageSize, successCallback, errorCallback) {
       // 获取数据
       let p = {
         type: this.cid,
@@ -219,7 +302,7 @@ export default {
       this.$http.post('product/productList', qs.stringify(p))
       .then(({data: {code, data, msg}}) => {
         if (code === 1) {
-          // console.log(data)
+          console.log(p, data)
           // 成功回调
           successCallback && successCallback(data)
         } else {
@@ -241,6 +324,40 @@ export default {
       // 记录距离顶部的距离
       this.scrollTop = y
       this.$refs.menuComp.subitemsExpanded = false
+    },
+    // mescroll组件初始化的回调,可获取到mescroll对象
+    mescrollInit (mescroll) {
+      this.mescroll = mescroll
+    },
+    // 上拉回调 page = {num:1, size:10}; num:当前页 ,默认从1开始; size:每页数据条数,默认10
+    upCallback (page, mescroll) {
+      // 模拟联网
+      this.getListDataFromNet(this.pdType, page.num, page.size, (arr) => {
+        // 如果是第一页需手动制空列表
+        if (page.num === 1) this.dataList = []
+        // 把请求到的数据添加到列表
+        this.dataList = this.dataList.concat(arr)
+        // 数据渲染成功后,隐藏下拉刷新的状态
+        this.$nextTick(() => {
+          mescroll.endSuccess(arr.length)
+        })
+      }, () => {
+        // 联网异常,隐藏上拉和下拉的加载进度
+        mescroll.endErr()
+      })
+    },
+
+    // 选中状态的样式
+    getActiveCls (type) {
+      return this.pdType === type ? 'active' : ''
+    },
+    // 切换菜单
+    changeTab (type) {
+      if (this.pdType !== type) {
+        this.pdType = type
+        this.dataList = []// 在这里手动置空列表,可显示加载中的请求进度
+        this.mescroll.resetUpScroll() // 刷新列表数据
+      }
     }
   }
 }
@@ -270,7 +387,7 @@ export default {
 
 /*展示上拉加载的数据列表*/
 .data-list {
-  display: none;
+  display: block;
 }
 
 .data-list li {
