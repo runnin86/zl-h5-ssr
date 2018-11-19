@@ -8,6 +8,7 @@ const state = {
   lists: [], // 文章列表
   sliderList: [], // 轮播列表
   floorList: [], // 楼层列表
+  categoryList: [], // 分类列表
   product: null, // 单个商品数据
   productProfile: null // 单个商品的详情
 }
@@ -17,6 +18,7 @@ const getters = {
   getLists: state => { return state.lists },
   getSliderList: state => state.sliderList,
   getFloorList: state => state.floorList,
+  getCategoryList: state => state.categoryList,
   getProductProfile: state => state.productProfile
 }
 
@@ -51,6 +53,28 @@ const actions = {
       if (code === 1) {
         commit('SET_FLOOR', data.floor)
       }
+    })
+  },
+  // 获取分类列表
+  fetchCategory ({ commit }, param) {
+    let pagenum = param.pagenum
+    let pagesize = param.pagesize
+    return new Promise((resolve, reject) => {
+      axios.post('product/productList', qs.stringify({type: param.type, pagenum, pagesize}))
+      .then(({data: {code, data, msg}}) => {
+        if (code === 1) {
+          commit('SET_CATEGORY', data)
+          resolve(data)
+        } else {
+          // 加载失败的回调,隐藏下拉刷新和上拉加载的状态;
+          // param.ms && param.ms.endErr()
+          reject(msg)
+        }
+      }, (response) => {
+        // error callback
+        console.error(response)
+        reject(response)
+      })
     })
   },
   // 获取商品明细(主信息和轮播图)
@@ -93,6 +117,9 @@ const mutations = {
   },
   SET_FLOOR (state, data) {
     state.floorList = data
+  },
+  SET_CATEGORY (state, data) {
+    state.categoryList = data
   },
   SET_PRODUCT (state, data) {
     state.product = data
